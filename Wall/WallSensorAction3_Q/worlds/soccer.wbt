@@ -1,0 +1,722 @@
+#VRML_SIM V5.0 utf8
+#000000
+#!mainWindow: 0 0 0.5 0.757692
+#!sceneTreeWindow: 0 0.757692 0.5 0.239423 0.232292
+#!textEditorWindow: 0.499479 0 0.500521 0.758654 0.303125
+#!logWindow: 0.500521 0.760577 0.5 0.240385
+#!robotWindow: "b1" 0.0432292 0.0730769 0.208333 0.576923 0
+
+WorldInfo {
+  info [
+    "A soccer game."
+    "This example demonstrates several of the supervisor capabilities:"
+    "- read and modify the objects position"
+    "- display text on the screen"
+    "- etc..."
+    "Author: Olivier Michel (Cyberbotics Ltd)"
+  ]
+  title "Soccer Game"
+}
+Viewpoint {
+  fieldOfView 0.725398
+  orientation -0.0129276 0.706143 0.707951 3.17456
+  position -0.239527 1.36194 0.00634795
+}
+Background {
+  skyColor [
+    0.4 0.7 1
+  ]
+}
+PointLight {
+  ambientIntensity 1
+  attenuation 0.5 0.5 0.5
+  intensity 4
+  location 0.5 2 0.5
+  castShadows TRUE
+}
+Solid {
+  translation -0.3 0.05 -0.2
+  children [
+    Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 0.1 0.3
+          specularColor 1 0.752941 0.796078
+        }
+      }
+      geometry DEF BOX3 Box {
+        size 0.6 0.1 0.02
+      }
+    }
+  ]
+  name "red box"
+  boundingObject Shape {
+    appearance Appearance {
+      material Material {
+        diffuseColor 1 1 1
+        specularColor 1 1 1
+      }
+    }
+    geometry USE BOX3
+  }
+}
+DEF SOCCER_FIELD Solid {
+  children [
+    DEF DWall Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 1 1 1
+          specularColor 1 1 1
+        }
+      }
+      geometry Extrusion {
+        crossSection [
+          0 -0.3
+          0 -0.31
+          -0.6 -0.31
+          -0.6 -0.3
+          0 -0.3
+        ]
+        spine [
+          0 0 0
+          0 0.05 0
+        ]
+      }
+    }
+    DEF UWall Shape {
+      geometry Extrusion {
+        crossSection [
+          0 0.3
+          0 0.31
+          -0.6 0.31
+          -0.6 0.3
+          0 0.3
+        ]
+        spine [
+          0 0 0
+          0 0.05 0
+        ]
+      }
+    }
+    DEF LWall Shape {
+      geometry Extrusion {
+        crossSection [
+          0 0.3
+          0.01 0.3
+          0.01 -0.3
+          0 -0.3
+          0 0.3
+        ]
+        spine [
+          0 0 0
+          0 0.05 0
+        ]
+      }
+    }
+    DEF RWall Shape {
+      geometry Extrusion {
+        crossSection [
+          -0.6 0.3
+          -0.61 0.3
+          -0.61 -0.3
+          -0.6 -0.3
+          -0.6 0.3
+        ]
+        spine [
+          0 0 0
+          0 0.05 0
+        ]
+      }
+    }
+    DEF GROUND Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.501961 0.25098 0
+        }
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0.75 0 0.75
+            -0.75 0 0.75
+            -0.75 0 -0.75
+            0.75 0 -0.75
+          ]
+        }
+        texCoord TextureCoordinate {
+          point [
+            0 0
+            1 0
+            1 1
+            0 1
+          ]
+        }
+        ccw FALSE
+        coordIndex [
+          0, 1, 2, 3
+        ]
+        texCoordIndex [
+          0, 1, 2, 3
+        ]
+      }
+    }
+  ]
+  name "soccer field"
+  boundingObject Group {
+    children [
+      DEF LWall Transform {
+        translation -0.605 0.025 0
+        children [
+          Box {
+            size 0.01 0.05 0.6
+          }
+        ]
+      }
+      DEF DWall Transform {
+        translation -0.3 0.025 -0.305
+        children [
+          Box {
+            size 0.6 0.05 0.005
+          }
+        ]
+      }
+      DEF UWall Transform {
+        translation -0.3 0.025 0.305
+        children [
+          Box {
+            size 0.6 0.05 0.01
+          }
+        ]
+      }
+      DEF RWall Transform {
+        translation 0.005 0.025 0
+        children [
+          Box {
+            size 0.01 0.05 0.6
+          }
+        ]
+      }
+      DEF GROUND_BBOX IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0.75 0 0.75
+            0.75 0 -0.75
+            -0.75 0 -0.76
+            -0.75 0 0.75
+          ]
+        }
+        coordIndex [
+          0, 1, 2, 3
+        ]
+      }
+    ]
+  }
+  locked TRUE
+}
+DEF B1 DifferentialWheels {
+  translation -0.1 0 0.2
+  rotation 0 1 0 1.57
+  children [
+    GPS {
+      translation 0 0 -0.035
+      children [
+        Shape {
+          geometry Cylinder {
+            height 0.168
+            radius 0.002
+          }
+        }
+      ]
+      name "gps"
+    }
+    Transform {
+      translation 0 0.0415 0
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.0820075 0.364731 0.8
+            }
+          }
+          geometry DEF BODY Cylinder {
+            height 0.08
+            radius 0.0375
+          }
+        }
+      ]
+    }
+    Solid {
+      translation -0.0375 0.025 0
+      rotation 1 0 0 3.44119
+      children [
+        DEF WHEEL Transform {
+          rotation 0 0 1 1.57
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+                  diffuseColor 1 0 0
+                }
+              }
+              geometry Cylinder {
+                height 0.01
+                radius 0.02
+              }
+            }
+          ]
+        }
+      ]
+      name "left wheel"
+    }
+    Solid {
+      translation 0.0375 0.025 0
+      rotation 1 0 0 4.84415
+      children [
+        USE WHEEL
+      ]
+      name "right wheel"
+    }
+    DEF DS0 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 1.57
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds0"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS1 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 1.046
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds1"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS2 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 0.523
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds2"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS3 DistanceSensor {
+      translation 0 0.063 0
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds3"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS4 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 -0.523
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds4"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS5 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 -1.046
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds5"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS6 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 -1.57
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds6"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS7 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 -2.093
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds7"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS8 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 -2.617
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds8"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS9 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 -3.14
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds9"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS10 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 2.617
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds10"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    DEF DS11 DistanceSensor {
+      translation 0 0.063 0
+      rotation 0 1 0 2.093
+      children [
+        DEF INFRARED Transform {
+          rotation 0 1 0 1.57
+          children [
+            Transform {
+              translation 0 0 0.04
+              rotation 1 0 0 1.57
+              children [
+                Shape {
+                  appearance Appearance {
+                    material Material {
+                      diffuseColor 1 1 0
+                      emissiveColor 1 1 0
+                    }
+                  }
+                  geometry Cylinder {
+                    height 0.002
+                    radius 0.002
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+      name "ds11"
+      lookupTable [
+        0 0 0
+        1 1000 0
+      ]
+      aperture 1
+    }
+    Receiver {
+      name "receiver"
+    }
+  ]
+  name "b1"
+  boundingObject Transform {
+    translation 0 0.0415 0
+    children [
+      USE BODY
+    ]
+  }
+  controller "soccer_player"
+  axleLength 0.09
+  wheelRadius 0.025
+}
+Supervisor {
+  children [
+    Emitter {
+      name "emitter"
+      range 10
+      baudRate 115200
+    }
+  ]
+  controller "soccer_supervisor"
+}

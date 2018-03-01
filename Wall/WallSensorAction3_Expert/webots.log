@@ -1,0 +1,16 @@
+[b1] reset done
+[b1] 3,stateMove(1)[8 3],mue[99]=0.700000,norm
+[b1] 3,stateMove(2)[8 2],mue[98]=0.490000,norm
+[b1] 0,stateMove(3)[8 1],mue[97]=0.343000,norm
+[b1] 0,stateMove(4)[8 0],mue[96]=0.240100,norm
+[b1] 0,stateMove(5)[7 0],mue[84]=0.168070,norm
+[b1] 0,stateMove(6)[6 0],mue[72]=0.117649,norm
+[b1] 0,stateMove(7)[5 0],mue[60]=0.082354,norm
+[b1] 0,stateMove(8)[4 0],mue[48]=0.057648,norm
+[b1] 2,stateMove(9)[3 0],mue[36]=0.040354,norm
+[b1] 2,stateMove(10)[2 0],mue[24]=0.028248,norm
+[b1] 2,stateMove(11)[2 1],mue[25]=0.019773,norm
+[b1] 0,stateMove(12)[2 2],mue[26]=0.013841,norm
+[b1] stateEnd(13)[2 3],mue[27]=0.009689
+[b1] stateEnd(14)[120],mue[120]=0.006782
+[b1] finish writing.

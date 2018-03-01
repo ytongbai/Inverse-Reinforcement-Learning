@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1418222746 source:d:\afteroraltest\final1210\withnoise\gama_20_20\irl_projection_20_20\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	"Q_parameter.h"
+	"Q_grid.h"
+
+1418227778 d:\afteroraltest\final1210\withnoise\gama_20_20\irl_projection_20_20\q_parameter.h
+
+1419218405 d:\afteroraltest\final1210\withnoise\gama_20_20\irl_projection_20_20\q_grid.h
+

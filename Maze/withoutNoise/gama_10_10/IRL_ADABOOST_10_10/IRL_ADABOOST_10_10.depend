@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1418225122 source:d:\afteroraltest\final1210\irl_adaboost_10_10\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	"Q_parameter.h"
+	"Q_grid.h"
+	"adaboost.h"
+
+1418226669 d:\afteroraltest\final1210\irl_adaboost_10_10\q_parameter.h
+
+1418224397 d:\afteroraltest\final1210\irl_adaboost_10_10\q_grid.h
+
+1418226713 d:\afteroraltest\final1210\irl_adaboost_10_10\adaboost.h
+
+1418273250 source:d:\afteroraltest\final1210\withoutnoise\gama_10_10\irl_adaboost_10_10\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	"Q_parameter.h"
+	"Q_grid.h"
+	"adaboost.h"
+
+1418273306 d:\afteroraltest\final1210\withoutnoise\gama_10_10\irl_adaboost_10_10\q_parameter.h
+
+1418224397 d:\afteroraltest\final1210\withoutnoise\gama_10_10\irl_adaboost_10_10\q_grid.h
+
+1418226713 d:\afteroraltest\final1210\withoutnoise\gama_10_10\irl_adaboost_10_10\adaboost.h
+

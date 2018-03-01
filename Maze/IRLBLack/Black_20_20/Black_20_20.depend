@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1419323308 source:d:\afteroraltest\final1210\maze\irlblack\black_20_20\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	"Q_parameter.h"
+	"Q_grid.h"
+	"adaboost.h"
+
+1419320602 d:\afteroraltest\final1210\maze\irlblack\black_20_20\q_parameter.h
+
+1419322456 d:\afteroraltest\final1210\maze\irlblack\black_20_20\q_grid.h
+
+1410952237 d:\afteroraltest\final1210\maze\irlblack\black_20_20\adaboost.h
+

@@ -1,0 +1,46 @@
+# depslib dependency file v1.0
+1418225122 source:d:\afteroraltest\final1210\ilr_adaboost_20_20\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	"Q_parameter.h"
+	"Q_grid.h"
+	"adaboost.h"
+
+1418226813 d:\afteroraltest\final1210\ilr_adaboost_20_20\q_parameter.h
+
+1418224397 d:\afteroraltest\final1210\ilr_adaboost_20_20\q_grid.h
+
+1418226713 d:\afteroraltest\final1210\ilr_adaboost_20_20\adaboost.h
+
+1418225122 source:d:\afteroraltest\final1210\withnoise\gama_20_20\ilr_adaboost_20_20\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	"Q_parameter.h"
+	"Q_grid.h"
+	"adaboost.h"
+
+1418276759 d:\afteroraltest\final1210\withnoise\gama_20_20\ilr_adaboost_20_20\q_parameter.h
+
+1418224397 d:\afteroraltest\final1210\withnoise\gama_20_20\ilr_adaboost_20_20\q_grid.h
+
+1418226713 d:\afteroraltest\final1210\withnoise\gama_20_20\ilr_adaboost_20_20\adaboost.h
+
+1419217974 source:d:\afteroraltest\final1210\error\gama_20_20\ilr_adaboost_20_20\main.c
+	<stdio.h>
+	<stdlib.h>
+	<math.h>
+	<time.h>
+	"Q_parameter.h"
+	"Q_grid.h"
+	"adaboost.h"
+
+1419217894 d:\afteroraltest\final1210\error\gama_20_20\ilr_adaboost_20_20\q_parameter.h
+
+1418224397 d:\afteroraltest\final1210\error\gama_20_20\ilr_adaboost_20_20\q_grid.h
+
+1418226713 d:\afteroraltest\final1210\error\gama_20_20\ilr_adaboost_20_20\adaboost.h
+
